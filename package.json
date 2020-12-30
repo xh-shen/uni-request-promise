@@ -17,7 +17,7 @@
   ],
   "scripts": {
     "start": "rollup -c rollup.config.ts -w",
-    "prebuild": "rimraf dist && rimraf lib && rimrfa types",
+    "prebuild": "rimraf dist && rimraf lib && rimraf types",
     "build": "tsc --module commonjs && rollup -c rollup.config.ts && typedoc src/index.ts --out docs --theme minimal",
     "test": "jest --config jest.config.json --coverage",
     "format": "prettier --write \"src/**/*.ts\"",
