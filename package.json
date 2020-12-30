@@ -1,6 +1,6 @@
 {
   "name": "@shen/uni-request",
-  "version": "0.0.1",
+  "version": "0.0.2-0",
   "main": "dist/uni-request.umd.js",
   "module": "dist/uni-request.js",
   "typings": "types/index.d.ts",
