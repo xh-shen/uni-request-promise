@@ -1,15 +1,25 @@
 {
   "name": "@shen/uni-request",
   "version": "0.0.1",
-  "main": "dist/uni-request.js",
+  "main": "dist/uni-request.umd.js",
+  "module": "dist/uni-request.js",
   "typings": "types/index.d.ts",
   "repository": "git@github.com:xh-shen/uni-request.git",
   "author": "shenqz <9509394@qq.com>",
   "license": "MIT",
+  "files": [
+    "dist",
+    "lib",
+    "types",
+    "LICENSE",
+    "README.md",
+    "package.json"
+  ],
   "scripts": {
     "start": "rollup -c rollup.config.ts -w",
     "prebuild": "rimraf dist",
     "build": "tsc --module commonjs && rollup -c rollup.config.ts && typedoc src/index.ts --out docs --theme minimal",
+    "publish": "sh ./script/publish.sh",
     "test": "jest --config jest.config.json --coverage",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint  --project tsconfig.json -t codeFrame 'src/**/*.ts' 'test/**/*.ts'"
