@@ -1,0 +1,62 @@
+<!--
+ * @Author: shen
+ * @Date: 2020-12-28 13:23:13
+ * @LastEditors: shen
+ * @LastEditTime: 2020-12-29 19:29:52
+ * @Description:
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="../dist//uni-request.umd.js"></script>
+  <script>
+    uniRequest.defaults.baseURL = 'https://api.example.com';
+    uniRequest.defaults.header.common['Authorization'] = 'AUTH_TOKEN';
+    uniRequest.defaults.header.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
+    // 添加请求拦截器
+    uniRequest.interceptors.request.use(function (config) {
+      // 在发送请求之前做些什么
+      console.log(config)
+      config.params.aaaa = '12312'
+      return config;
+    }, function (error) {
+      // 对请求错误做些什么
+      return Promise.reject(error);
+    });
+
+    // 添加响应拦截器
+    uniRequest.interceptors.response.use(function (response) {
+      // 对响应数据做点什么
+      return response;
+    }, function (error) {
+      // 对响应错误做点什么
+      console.log(error)
+      return Promise.reject(error);
+    });
+
+    uniRequest.request({
+      url: '/api/demo?ww=111',
+      method: 'post',
+      params: {
+        a:2,
+        b:1
+      },
+      data: {
+        a:2,
+        b:1
+      },
+      transformRequest: [function (data, headers) {
+        return {...data, test: 1};
+      }],
+    }).then(res => {
+      console.log(res)
+    })
+  </script>
+</body>
+</html>
