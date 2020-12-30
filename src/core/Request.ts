@@ -2,11 +2,11 @@
  * @Author: shen
  * @Date: 2020-12-28 14:11:37
  * @LastEditors: shen
- * @LastEditTime: 2020-12-29 11:09:36
+ * @LastEditTime: 2020-12-30 14:59:29
  * @Description:
  */
 
-import { RequestConfig, RequestPromise, ResponseResult, ResolvedFn, RejectedFn } from '../types';
+import { RequestConfig, RequestPromise, ResponseResult, ResolvedFn, RejectedFn, Method } from '../types';
 
 import dispatchRequest from './dispatchRequest';
 import InterceptorManager from './InterceptorManager';
@@ -83,14 +83,48 @@ export default class Request {
     return buildURL(config.url!, config.params).replace(/^\?/, '');
   }
 
-  // forEach(['delete', 'get', 'head', 'options'], function forEachMethodNoData(method) {
-  //   /*eslint func-names:0*/
-  //   Axios.prototype[method] = function(url, config) {
-  //     return this.request(mergeConfig(config || {}, {
-  //       method: method,
-  //       url: url,
-  //       data: (config || {}).data
-  //     }));
-  //   };
-  // });
+  get(url: string, config?: RequestConfig): RequestPromise {
+    return this._requestMethodWithoutData('get', url, config)
+  }
+
+  delete(url: string, config?: RequestConfig): RequestPromise {
+    return this._requestMethodWithoutData('delete', url, config)
+  }
+
+  head(url: string, config?: RequestConfig): RequestPromise {
+    return this._requestMethodWithoutData('head', url, config)
+  }
+
+  options(url: string, config?: RequestConfig): RequestPromise {
+    return this._requestMethodWithoutData('options', url, config)
+  }
+
+  post(url: string, data?: any, config?: RequestConfig): RequestPromise {
+    return this._requestMethodWithData('post', url, data, config)
+  }
+
+  put(url: string, data?: any, config?: RequestConfig): RequestPromise {
+    return this._requestMethodWithData('post', url, data, config)
+  }
+
+  patch(url: string, data?: any, config?: RequestConfig): RequestPromise {
+    return this._requestMethodWithData('post', url, data, config)
+  }
+
+  _requestMethodWithoutData(
+    method: Method,
+    url: string,
+    config?: RequestConfig
+  ): RequestPromise {
+    return this.request(mergeConfig(config || {}, { method, url, data: (config || {}).data }));
+  }
+
+  _requestMethodWithData(
+    method: Method,
+    url: string,
+    data?: any,
+    config?: RequestConfig
+  ): RequestPromise {
+    return this.request(mergeConfig(config || {}, { method, url, data }));
+  }
 }

@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2020-12-28 00:46:10
  * @LastEditors: shen
- * @LastEditTime: 2020-12-30 13:40:15
+ * @LastEditTime: 2020-12-30 14:54:07
  * @Description:
  */
 
@@ -61,13 +61,13 @@ export interface RequestInstance {
     response: InterceptorManager<ResponseResult>;
   };
   request<T = any>(config: RequestConfig): RequestPromise<T>;
-  // get<T = any>(url: string, config?: RequestConfig): RequestPromise<T>
-  // delete<T = any>(url: string, config?: RequestConfig): RequestPromise<T>
-  // head<T = any>(url: string, config?: RequestConfig): RequestPromise<T>
-  // options<T = any>(url: string, config?: RequestConfig): RequestPromise<T>
-  // post<T = any>(url: string, data?: any, config?: RequestConfig): RequestPromise<T>
-  // put<T = any>(url: string, data?: any, config?: RequestConfig): RequestPromise<T>
-  // patch<T = any>(url: string, data?: any, config?: RequestConfig): RequestPromise<T>
+  get<T = any>(url: string, config?: RequestConfig): RequestPromise<T>
+  delete<T = any>(url: string, config?: RequestConfig): RequestPromise<T>
+  head<T = any>(url: string, config?: RequestConfig): RequestPromise<T>
+  options<T = any>(url: string, config?: RequestConfig): RequestPromise<T>
+  post<T = any>(url: string, data?: any, config?: RequestConfig): RequestPromise<T>
+  put<T = any>(url: string, data?: any, config?: RequestConfig): RequestPromise<T>
+  patch<T = any>(url: string, data?: any, config?: RequestConfig): RequestPromise<T>
   getUri(config?: RequestConfig): string;
 }
 

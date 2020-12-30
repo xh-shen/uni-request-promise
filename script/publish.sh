@@ -2,14 +2,14 @@
  # @Author: shen
  # @Date: 2020-12-30 14:10:08
  # @LastEditors: shen
- # @LastEditTime: 2020-12-30 14:11:58
+ # @LastEditTime: 2020-12-30 14:44:14
  # @Description:
 ###
 
 rm -rf ./dist
 rm -rf ./lib
 rm -rf ./types
-yarn run build
+npm run build
 
 old_registry=$(npm config get registry)
 npm config set registry https://registry.npmjs.org
