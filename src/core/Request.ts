@@ -84,47 +84,38 @@ export default class Request {
   }
 
   get(url: string, config?: RequestConfig): RequestPromise {
-    return this._requestMethodWithoutData('get', url, config)
+    return this._requestMethodWithoutData('get', url, config);
   }
 
   delete(url: string, config?: RequestConfig): RequestPromise {
-    return this._requestMethodWithoutData('delete', url, config)
+    return this._requestMethodWithoutData('delete', url, config);
   }
 
   head(url: string, config?: RequestConfig): RequestPromise {
-    return this._requestMethodWithoutData('head', url, config)
+    return this._requestMethodWithoutData('head', url, config);
   }
 
   options(url: string, config?: RequestConfig): RequestPromise {
-    return this._requestMethodWithoutData('options', url, config)
+    return this._requestMethodWithoutData('options', url, config);
   }
 
   post(url: string, data?: any, config?: RequestConfig): RequestPromise {
-    return this._requestMethodWithData('post', url, data, config)
+    return this._requestMethodWithData('post', url, data, config);
   }
 
   put(url: string, data?: any, config?: RequestConfig): RequestPromise {
-    return this._requestMethodWithData('post', url, data, config)
+    return this._requestMethodWithData('post', url, data, config);
   }
 
   patch(url: string, data?: any, config?: RequestConfig): RequestPromise {
-    return this._requestMethodWithData('post', url, data, config)
+    return this._requestMethodWithData('post', url, data, config);
   }
 
-  _requestMethodWithoutData(
-    method: Method,
-    url: string,
-    config?: RequestConfig
-  ): RequestPromise {
+  _requestMethodWithoutData(method: Method, url: string, config?: RequestConfig): RequestPromise {
     return this.request(mergeConfig(config || {}, { method, url, data: (config || {}).data }));
   }
 
-  _requestMethodWithData(
-    method: Method,
-    url: string,
-    data?: any,
-    config?: RequestConfig
-  ): RequestPromise {
+  _requestMethodWithData(method: Method, url: string, data?: any, config?: RequestConfig): RequestPromise {
     return this.request(mergeConfig(config || {}, { method, url, data }));
   }
 }

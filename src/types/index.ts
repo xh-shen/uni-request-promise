@@ -61,13 +61,13 @@ export interface RequestInstance {
     response: InterceptorManager<ResponseResult>;
   };
   request<T = any>(config: RequestConfig): RequestPromise<T>;
-  get<T = any>(url: string, config?: RequestConfig): RequestPromise<T>
-  delete<T = any>(url: string, config?: RequestConfig): RequestPromise<T>
-  head<T = any>(url: string, config?: RequestConfig): RequestPromise<T>
-  options<T = any>(url: string, config?: RequestConfig): RequestPromise<T>
-  post<T = any>(url: string, data?: any, config?: RequestConfig): RequestPromise<T>
-  put<T = any>(url: string, data?: any, config?: RequestConfig): RequestPromise<T>
-  patch<T = any>(url: string, data?: any, config?: RequestConfig): RequestPromise<T>
+  get<T = any>(url: string, config?: RequestConfig): RequestPromise<T>;
+  delete<T = any>(url: string, config?: RequestConfig): RequestPromise<T>;
+  head<T = any>(url: string, config?: RequestConfig): RequestPromise<T>;
+  options<T = any>(url: string, config?: RequestConfig): RequestPromise<T>;
+  post<T = any>(url: string, data?: any, config?: RequestConfig): RequestPromise<T>;
+  put<T = any>(url: string, data?: any, config?: RequestConfig): RequestPromise<T>;
+  patch<T = any>(url: string, data?: any, config?: RequestConfig): RequestPromise<T>;
   getUri(config?: RequestConfig): string;
 }
 
