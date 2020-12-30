@@ -17,9 +17,8 @@
   ],
   "scripts": {
     "start": "rollup -c rollup.config.ts -w",
-    "prebuild": "rimraf dist",
+    "prebuild": "rimraf dist && rimraf lib && rimrfa types",
     "build": "tsc --module commonjs && rollup -c rollup.config.ts && typedoc src/index.ts --out docs --theme minimal",
-    "publish": "sh ./script/publish.sh",
     "test": "jest --config jest.config.json --coverage",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint  --project tsconfig.json -t codeFrame 'src/**/*.ts' 'test/**/*.ts'"

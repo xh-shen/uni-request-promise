@@ -2,13 +2,10 @@
  # @Author: shen
  # @Date: 2020-12-30 14:10:08
  # @LastEditors: shen
- # @LastEditTime: 2020-12-30 14:44:14
+ # @LastEditTime: 2020-12-30 15:22:28
  # @Description:
 ###
 
-rm -rf ./dist
-rm -rf ./lib
-rm -rf ./types
 npm run build
 
 old_registry=$(npm config get registry)
