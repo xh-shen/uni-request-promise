@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2020-12-29 08:38:49
  * @LastEditors: shen
- * @LastEditTime: 2020-12-30 13:26:57
+ * @LastEditTime: 2020-12-31 16:23:23
  * @Description:
  */
 
@@ -11,7 +11,7 @@ import buildFullPath from '../core/buildFullPath';
 import buildURL from '../helpers/buildURL';
 import { createError } from '../core/createError';
 
-const uniRequestFileds: string[] = ['url', 'method?', 'header', 'data', 'dataType', 'timeout', 'withCredentials', 'responseType', 'sslVerify', 'firstIpv4'];
+const uniRequestFileds: string[] = ['url', 'method', 'header', 'data', 'dataType', 'timeout', 'withCredentials', 'responseType', 'sslVerify', 'firstIpv4'];
 
 interface Options {
   [key: string]: any;
