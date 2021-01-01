@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2020-12-28 14:52:17
  * @LastEditors: shen
- * @LastEditTime: 2020-12-30 13:52:15
+ * @LastEditTime: 2021-01-01 15:11:39
  * @Description:
  */
 const toString = Object.prototype.toString;
@@ -41,19 +41,15 @@ export function forEach(obj: any, fn: any) {
     return;
   }
 
-  // Force an array if not already something iterable
   if (typeof obj !== 'object') {
-    /*eslint no-param-reassign:0*/
     obj = [obj];
   }
 
   if (Array.isArray(obj)) {
-    // Iterate over array values
     for (let i = 0, l = obj.length; i < l; i++) {
       fn.call(null, obj[i], i, obj);
     }
   } else {
-    // Iterate over object keys
     for (const key in obj) {
       if (Object.prototype.hasOwnProperty.call(obj, key)) {
         fn.call(null, obj[key], key, obj);

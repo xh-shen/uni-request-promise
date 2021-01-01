@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2020-12-28 00:46:10
  * @LastEditors: shen
- * @LastEditTime: 2020-12-30 14:54:07
+ * @LastEditTime: 2021-01-01 15:57:41
  * @Description:
  */
 
@@ -32,6 +32,7 @@ export interface RequestConfig {
   responseType?: ResponseType;
   sslVerify?: boolean;
   firstIpv4?: boolean;
+  cancelToken?: CancelToken;
   [propName: string]: any;
 }
 
@@ -75,8 +76,46 @@ export type RequestClassStatic = new (config: RequestConfig) => RequestInstance;
 
 export interface RequestStatic extends RequestInstance {
   create(config?: RequestConfig): RequestInstance;
-  // isCancel(value: any): boolean;
+  CancelToken: CancelTokenStatic
+  Cancel: CancelStatic
+  isCancel: (value: any) => boolean
   all<T>(values: (T | Promise<T>)[]): Promise<T[]>;
   spread<T, R>(callback: (...args: T[]) => R): (array: T[]) => R;
   Request: RequestClassStatic;
 }
+
+export interface CancelToken {
+  promise: Promise<Cancel>
+  reason?: Cancel
+
+  throwIfRequested(): void
+}
+
+export interface Canceler {
+  (message?: string): void
+}
+
+export interface CancelExecutor {
+  (cancel: Canceler): void
+}
+
+export interface CancelTokenSource {
+  token: CancelToken
+  cancel: Canceler
+}
+
+export interface CancelTokenStatic {
+  new (executor: CancelExecutor): CancelToken
+
+  source(): CancelTokenSource
+}
+
+export interface Cancel {
+  message?: string
+}
+
+export interface CancelStatic {
+  new (message?: string): Cancel
+}
+
+

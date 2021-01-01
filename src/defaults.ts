@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2020-12-28 00:45:59
  * @LastEditors: shen
- * @LastEditTime: 2020-12-30 13:29:12
+ * @LastEditTime: 2021-01-01 15:42:53
  * @Description:
  */
 import { RequestConfig } from './types';
@@ -33,6 +33,14 @@ const defaults: RequestConfig = {
       return data;
     },
   ],
+  transformResponse: [function transformResponse(data) {
+    if (typeof data === 'string') {
+      try {
+        data = JSON.parse(data);
+      } catch (e) { /* Ignore */ }
+    }
+    return data;
+  }],
   dataType: 'json',
   responseType: 'text',
   timeout: 60000,

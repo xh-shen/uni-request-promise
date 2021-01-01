@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2020-12-29 08:38:49
  * @LastEditors: shen
- * @LastEditTime: 2020-12-31 16:23:23
+ * @LastEditTime: 2021-01-01 16:08:40
  * @Description:
  */
 
@@ -20,12 +20,13 @@ interface Options {
 export default function uniAdapter(config: RequestConfig): RequestPromise {
   return new Promise((resolve, reject) => {
     const fullPath = buildFullPath(config.baseURL, config.url!);
+    const cancelToken = config.cancelToken;
     const options: Options = {};
     uniRequestFileds.forEach((key) => {
       options[key] = config[key];
     });
     options.url = buildURL(fullPath, config.params);
-    const requestTask = uni.request({
+    let request: RequestTask | null = uni.request({
       ...options,
       success(result: any) {
         const response: ResponseResult = {
@@ -34,13 +35,20 @@ export default function uniAdapter(config: RequestConfig): RequestPromise {
           statusText: result.errMsg,
           header: result.header,
           config,
-          request: requestTask,
+          request: request,
         };
         resolve(response);
       },
       fail(error: any) {
-        reject(createError(`Request failed with status code ${error.statusCode}`, config, null, requestTask, error));
+        reject(createError(`Request failed with status code ${error.statusCode}`, config, null, request, error));
       },
     });
+    if (cancelToken) {
+      cancelToken.promise.then(reason => {
+        request!.abort()
+        reject(reason)
+        request = null;
+      })
+    }
   });
 }

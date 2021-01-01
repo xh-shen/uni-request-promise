@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2020-12-29 09:23:43
  * @LastEditors: shen
- * @LastEditTime: 2020-12-30 13:53:55
+ * @LastEditTime: 2021-01-01 15:11:15
  * @Description:
  */
 
@@ -14,7 +14,6 @@ interface Handler<T> {
 }
 
 export default class InterceptorManager<T> {
-  // private handlers: Array<Handler<T> | null>;
   private handlers: (Handler<T> | null)[];
 
   constructor() {

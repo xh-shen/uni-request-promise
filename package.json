@@ -7,6 +7,15 @@
   "repository": "git@github.com:xh-shen/uni-request.git",
   "author": "shenqz <9509394@qq.com>",
   "license": "MIT",
+  "keywords": [
+    "uni.request",
+    "uniapp",
+    "request",
+    "http",
+    "ajax",
+    "promise",
+    "node"
+  ],
   "files": [
     "dist",
     "lib",
