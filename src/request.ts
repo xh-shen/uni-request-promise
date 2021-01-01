@@ -10,8 +10,8 @@ import Request from './core/Request';
 import mergeConfig from './core/mergeConfig';
 import defaults from './defaults';
 import { extend } from './helpers/util';
-import CancelToken from './cancel/CancelToken'
-import Cancel, { isCancel } from './cancel/Cancel'
+import CancelToken from './cancel/CancelToken';
+import Cancel, { isCancel } from './cancel/Cancel';
 
 function createInstance(defaultConfig: RequestConfig): RequestStatic {
   const context = new Request(defaultConfig);
@@ -29,9 +29,9 @@ request.create = (config: RequestConfig) => createInstance(mergeConfig(defaults,
 
 request.Request = Request;
 
-request.CancelToken = CancelToken
-request.Cancel = Cancel
-request.isCancel = isCancel
+request.CancelToken = CancelToken;
+request.Cancel = Cancel;
+request.isCancel = isCancel;
 
 request.all = function all(promises) {
   return Promise.all(promises);

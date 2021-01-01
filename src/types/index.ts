@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2020-12-28 00:46:10
  * @LastEditors: shen
- * @LastEditTime: 2021-01-01 15:57:41
+ * @LastEditTime: 2021-01-01 16:44:12
  * @Description:
  */
 
@@ -76,46 +76,38 @@ export type RequestClassStatic = new (config: RequestConfig) => RequestInstance;
 
 export interface RequestStatic extends RequestInstance {
   create(config?: RequestConfig): RequestInstance;
-  CancelToken: CancelTokenStatic
-  Cancel: CancelStatic
-  isCancel: (value: any) => boolean
+  CancelToken: CancelTokenStatic;
+  Cancel: CancelStatic;
+  isCancel: (value: any) => boolean;
   all<T>(values: (T | Promise<T>)[]): Promise<T[]>;
   spread<T, R>(callback: (...args: T[]) => R): (array: T[]) => R;
   Request: RequestClassStatic;
 }
 
 export interface CancelToken {
-  promise: Promise<Cancel>
-  reason?: Cancel
+  promise: Promise<Cancel>;
+  reason?: Cancel;
 
-  throwIfRequested(): void
+  throwIfRequested(): void;
 }
 
-export interface Canceler {
-  (message?: string): void
-}
+export type Canceler = (message?: string) => void;
 
-export interface CancelExecutor {
-  (cancel: Canceler): void
-}
+export type CancelExecutor = (cancel: Canceler) => void;
 
 export interface CancelTokenSource {
-  token: CancelToken
-  cancel: Canceler
+  token: CancelToken;
+  cancel: Canceler;
 }
 
 export interface CancelTokenStatic {
-  new (executor: CancelExecutor): CancelToken
+  new (executor: CancelExecutor): CancelToken;
 
-  source(): CancelTokenSource
+  source(): CancelTokenSource;
 }
 
 export interface Cancel {
-  message?: string
+  message?: string;
 }
 
-export interface CancelStatic {
-  new (message?: string): Cancel
-}
-
-
+export type CancelStatic = new (message?: string) => Cancel;

@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2020-12-29 08:38:49
  * @LastEditors: shen
- * @LastEditTime: 2021-01-01 16:08:40
+ * @LastEditTime: 2021-01-01 16:42:29
  * @Description:
  */
 
@@ -35,7 +35,7 @@ export default function uniAdapter(config: RequestConfig): RequestPromise {
           statusText: result.errMsg,
           header: result.header,
           config,
-          request: request,
+          request,
         };
         resolve(response);
       },
@@ -44,11 +44,11 @@ export default function uniAdapter(config: RequestConfig): RequestPromise {
       },
     });
     if (cancelToken) {
-      cancelToken.promise.then(reason => {
-        request!.abort()
-        reject(reason)
+      cancelToken.promise.then((reason) => {
+        request!.abort();
+        reject(reason);
         request = null;
-      })
+      });
     }
   });
 }

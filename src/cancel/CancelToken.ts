@@ -2,50 +2,48 @@
  * @Author: shen
  * @Date: 2021-01-01 15:54:16
  * @LastEditors: shen
- * @LastEditTime: 2021-01-01 16:08:17
+ * @LastEditTime: 2021-01-01 16:42:55
  * @Description:
  */
-import { CancelExecutor, Canceler, CancelTokenSource } from '../types'
+import { CancelExecutor, Canceler, CancelTokenSource } from '../types';
 
-import Cancel from './Cancel'
+import Cancel from './Cancel';
 
-interface ResolvePromise {
-  (reason?: Cancel): void
-}
+type ResolvePromise = (reason?: Cancel) => void;
 
 export default class CancelToken {
-  promise: Promise<Cancel>
-  reason?: Cancel
+  promise: Promise<Cancel>;
+  reason?: Cancel;
 
   constructor(executor: CancelExecutor) {
-    let resolvePromise: ResolvePromise
-    this.promise = new Promise<Cancel>(resolve => {
-      resolvePromise = resolve as ResolvePromise
-    })
+    let resolvePromise: ResolvePromise;
+    this.promise = new Promise<Cancel>((resolve) => {
+      resolvePromise = resolve as ResolvePromise;
+    });
 
-    executor(message => {
+    executor((message) => {
       if (this.reason) {
-        return
+        return;
       }
-      this.reason = new Cancel(message)
-      resolvePromise(this.reason)
-    })
+      this.reason = new Cancel(message);
+      resolvePromise(this.reason);
+    });
   }
 
   throwIfRequested(): void {
     if (this.reason) {
-      throw this.reason
+      throw this.reason;
     }
   }
 
   static source(): CancelTokenSource {
-    let cancel!: Canceler
-    const token = new CancelToken(c => {
-      cancel = c
-    })
+    let cancel!: Canceler;
+    const token = new CancelToken((c) => {
+      cancel = c;
+    });
     return {
       cancel,
-      token
-    }
+      token,
+    };
   }
 }

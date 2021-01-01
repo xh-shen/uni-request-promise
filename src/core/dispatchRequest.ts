@@ -12,7 +12,6 @@ import defaults from '../defaults';
 import { merge, forEach } from '../helpers/util';
 
 export default function dispatchRequest(config: RequestConfig): RequestPromise {
-
   config.header = config.header || {};
 
   config.data = transformData(config.data, config.header, config.transformRequest);

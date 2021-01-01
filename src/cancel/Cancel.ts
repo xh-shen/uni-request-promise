@@ -7,13 +7,13 @@
  */
 
 export default class Cancel {
-  message?: string
+  message?: string;
 
   constructor(message?: string) {
-    this.message = message
+    this.message = message;
   }
 }
 
 export function isCancel(value: any): boolean {
-  return value instanceof Cancel
+  return value instanceof Cancel;
 }

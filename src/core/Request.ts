@@ -69,7 +69,7 @@ export default class Request {
     this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
       chain.push(interceptor);
     });
-    console.log(chain)
+    console.log(chain);
     while (chain.length) {
       const { resolved, rejected } = chain.shift()!;
       promise = promise.then(resolved, rejected);
