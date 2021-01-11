@@ -2,7 +2,7 @@
  * @Author: shen
  * @Date: 2020-12-28 14:11:37
  * @LastEditors: shen
- * @LastEditTime: 2021-01-01 15:16:27
+ * @LastEditTime: 2021-01-11 14:23:21
  * @Description:
  */
 
@@ -69,7 +69,6 @@ export default class Request {
     this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
       chain.push(interceptor);
     });
-    console.log(chain);
     while (chain.length) {
       const { resolved, rejected } = chain.shift()!;
       promise = promise.then(resolved, rejected);
